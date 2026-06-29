@@ -1,0 +1,199 @@
+{
+  "entities": {
+    "UserProfile": {
+      "title": "UserProfile",
+      "description": "Represents a gamer's digital identity and custom preferences.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "User ID matching Firebase Auth." },
+        "username": { "type": "string", "description": "Gamer alias." },
+        "avatar": { "type": "string", "description": "Avatar design or profile image index." },
+        "theme": { "type": "string", "description": "Selected visual cyber deck style." },
+        "rankClass": { "type": "string", "description": "Competitive tier class." },
+        "gamesPlaying": { "type": "array", "description": "List of active games." },
+        "playstyle": { "type": "string", "description": "Gamer's psychological playstyle profile." },
+        "bio": { "type": "string", "description": "Short bio or signal signature." },
+        "credits": { "type": "number", "description": "Platform creds/credits." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "username", "theme"]
+    },
+    "SocialPost": {
+      "title": "SocialPost",
+      "description": "A social broadcasting update sent on the global feed.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique post identifier." },
+        "authorId": { "type": "string", "description": "Author user ID." },
+        "authorName": { "type": "string", "description": "Author gamer tag." },
+        "authorAvatar": { "type": "string", "description": "Author avatar icon." },
+        "content": { "type": "string", "description": "Text body of the broadcast." },
+        "mediaUrl": { "type": "string", "description": "URL of the attached image or video." },
+        "mediaType": { "type": "string", "description": "Type of attached media (image/video/clip)." },
+        "likes": { "type": "array", "description": "Array of user IDs who liked the broadcast." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "authorId", "authorName", "content", "likes", "createdAt"]
+    },
+    "PostComment": {
+      "title": "PostComment",
+      "description": "A comment on a social media feed post.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique comment identifier." },
+        "postId": { "type": "string", "description": "ID of parent post." },
+        "authorId": { "type": "string", "description": "Author user ID." },
+        "authorName": { "type": "string", "description": "Author gamer tag." },
+        "authorAvatar": { "type": "string", "description": "Author avatar icon." },
+        "content": { "type": "string", "description": "Comment text body." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "postId", "authorId", "authorName", "content", "createdAt"]
+    },
+    "UserFollow": {
+      "title": "UserFollow",
+      "description": "A follow connection between two gamers.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique connection identifier." },
+        "followerId": { "type": "string", "description": "ID of gamer following." },
+        "followingId": { "type": "string", "description": "ID of gamer being followed." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "followerId", "followingId", "createdAt"]
+    },
+    "LiveStream": {
+      "title": "LiveStream",
+      "description": "A gamer's active live stream broadcast channel.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique stream identifier." },
+        "title": { "type": "string", "description": "Stream broadcast title." },
+        "hostId": { "type": "string", "description": "Host user ID." },
+        "hostName": { "type": "string", "description": "Host gamer tag." },
+        "game": { "type": "string", "description": "Game title being played." },
+        "streamUrl": { "type": "string", "description": "Video embed, gameplay config or stream content URL." },
+        "viewerCount": { "type": "number", "description": "Current active viewers." },
+        "status": { "type": "string", "description": "Stream status: active/offline." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "title", "hostId", "hostName", "game", "status", "createdAt"]
+    },
+    "LinkedGame": {
+      "title": "LinkedGame",
+      "description": "A connected game launcher or game network account linked to the app.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique connection ID." },
+        "userId": { "type": "string", "description": "User ID matching Profile." },
+        "platform": { "type": "string", "description": "Gaming network (Steam, Epic, PSN, Xbox, etc)." },
+        "gamerTag": { "type": "string", "description": "The custom external gamer alias." },
+        "syncedStats": { "type": "string", "description": "JSON string containing synchronized stats and telemetry." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "userId", "platform", "gamerTag", "createdAt"]
+    },
+    "Community": {
+      "title": "Community",
+      "description": "A collective hub for specific gaming sectors.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique community ID." },
+        "name": { "type": "string", "description": "Community game name." },
+        "description": { "type": "string", "description": "Details about the faction." },
+        "icon": { "type": "string", "description": "Lucide icon string." },
+        "category": { "type": "string", "description": "Genre category." }
+      },
+      "required": ["id", "name", "description"]
+    },
+    "ChannelMessage": {
+      "title": "ChannelMessage",
+      "description": "A signal/message sent inside a community channel.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique message ID." },
+        "senderId": { "type": "string", "description": "Sender user ID." },
+        "senderName": { "type": "string", "description": "Sender gamer tag." },
+        "senderAvatar": { "type": "string", "description": "Sender avatar." },
+        "content": { "type": "string", "description": "Message payload." },
+        "channelId": { "type": "string", "description": "Lobby channel: general, tactics, lfg." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "senderId", "senderName", "content", "channelId", "createdAt"]
+    },
+    "Tournament": {
+      "title": "Tournament",
+      "description": "A competitive matchmaking league event.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique league event identifier." },
+        "name": { "type": "string", "description": "Tournament title." },
+        "game": { "type": "string", "description": "Target game title." },
+        "status": { "type": "string", "description": "Event status: Registration, Ongoing, Completed." },
+        "slotsTotal": { "type": "number", "description": "Total competitor slots available." },
+        "slotsFilled": { "type": "number", "description": "Current slots filled." },
+        "teams": { "type": "array", "description": "Registered player aliases." },
+        "brackets": { "type": "string", "description": "JSON serialized string of match rounds." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "name", "game", "status", "slotsTotal", "slotsFilled", "teams", "brackets", "createdAt"]
+    },
+    "DirectMessage": {
+      "title": "DirectMessage",
+      "description": "A secure peer-to-peer chat message.",
+      "type": "object",
+      "properties": {
+        "id": { "type": "string", "description": "Unique DM ID." },
+        "senderId": { "type": "string", "description": "Sender user ID." },
+        "senderName": { "type": "string", "description": "Sender gamer tag." },
+        "recipientId": { "type": "string", "description": "Recipient user ID." },
+        "recipientName": { "type": "string", "description": "Recipient gamer tag." },
+        "content": { "type": "string", "description": "Message payload (often encrypted style)." },
+        "createdAt": { "type": "string", "description": "ISO timestamp." }
+      },
+      "required": ["id", "senderId", "senderName", "recipientId", "recipientName", "content", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/users/{userId}": {
+      "schema": "UserProfile",
+      "description": "User profiles database."
+    },
+    "/posts/{postId}": {
+      "schema": "SocialPost",
+      "description": "Global user broadcasting feed posts."
+    },
+    "/posts/{postId}/comments/{commentId}": {
+      "schema": "PostComment",
+      "description": "Comments attached to specific social posts."
+    },
+    "/follows/{followId}": {
+      "schema": "UserFollow",
+      "description": "Follower and following gaming network map."
+    },
+    "/streams/{streamId}": {
+      "schema": "LiveStream",
+      "description": "Active and scheduled gameplay broadcasts."
+    },
+    "/linked_games/{linkId}": {
+      "schema": "LinkedGame",
+      "description": "Simulated external linked game platform connections."
+    },
+    "/communities/{communityId}": {
+      "schema": "Community",
+      "description": "Factions and gaming hubs."
+    },
+    "/communities/{communityId}/messages/{messageId}": {
+      "schema": "ChannelMessage",
+      "description": "Real-time communication logs within gaming hubs."
+    },
+    "/tournaments/{tournamentId}": {
+      "schema": "Tournament",
+      "description": "Matchmaking leagues and tournament structures."
+    },
+    "/direct_messages/{messageId}": {
+      "schema": "DirectMessage",
+      "description": "Secure chat records between gaming units."
+    }
+  }
+}

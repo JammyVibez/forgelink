@@ -1,0 +1,6 @@
+{
+  "name": "ForgeLink",
+  "description": "A cyberpunk gaming hub featuring real-time stream chats, social feeds, lobby channels, matchmaking leagues, secure DMs, and an AI-powered squad recommender.",
+  "requestFramePermissions": ["camera", "microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
